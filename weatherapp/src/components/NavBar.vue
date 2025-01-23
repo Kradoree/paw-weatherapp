@@ -8,13 +8,24 @@
                 </div>
             </RouterLink>
             <div class="flex gap-3 flex-1 justify-end">
-                <p class="text-2xl">Login</p>
-                <p class="text-2xl">Register</p>
+                <p class="text-2xl" @click="viewLogin">Login</p>
+                <p class="text-2xl" @click="viewRegister">Register</p>
             </div>
         </nav>
     </header>
-</template>
+</template> 
 
 <script setup>
-import {RouterLink} from "vue-router";
+import {RouterLink, useRouter} from "vue-router";
+const router = useRouter();
+const viewLogin = () => {
+    router.push({
+      name: "login",
+    });
+}
+const viewRegister = () => {
+    router.push({
+      name: "register",
+    });
+}
 </script>

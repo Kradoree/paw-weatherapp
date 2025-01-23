@@ -1,6 +1,7 @@
 <script setup>
   import {ref} from "vue";
   import axios from "axios";
+  import { useRouter } from "vue-router";
 
   const searchAPIKey = "pk.eyJ1Ijoia3JhZG9yZSIsImEiOiJjbTVvZjZsb2EwMDltMmtzaXY4NmdqaWNkIn0.vKgD3TwWGGTtWVTgTdeAkw";
   const search = ref("");
@@ -18,10 +19,23 @@
       mapboxSearchResults.value = null;
     }, 300);
   }
+  const router = useRouter();
   const viewPlace = (searchResult) => {
     console.log(searchResult);
     const  [city, state] = searchResult.place_name.split(",");
-    console.log(city, state); 
+    console.log(city, state);
+    router.push({
+      name: "place",
+      params:{
+        city: city,
+        state: state.replaceAll(" ",""),
+      },
+      query:{
+        lng: searchResult.geometry.coordinates[0],
+        lat: searchResult.geometry.coordinates[1],
+        preview: true,
+      },
+    });
   }
 </script>
 

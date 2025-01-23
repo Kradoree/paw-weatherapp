@@ -6,6 +6,7 @@ export default {
       colors: {
         "pricolor": "#117DBF",
         "seccolor": "#083359",
+        "thicolor": "#0D588C",
       },
       container:{
         padding: "2rem",
